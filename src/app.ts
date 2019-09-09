@@ -2,8 +2,10 @@ import express from 'express';
 import morgan from 'morgan';
 import indexRoutes from './routes/index'
 import path from 'path'
+import cors from 'cors'
+
 const PORT = process.env.PORT || 3000;
-// What is ASP.NET API
+
 const app =  express();
 
 //settings
@@ -11,6 +13,7 @@ app.set('port', PORT);
 
 //middleware
 app.use(morgan('dev'));
+app.use(cors())
 app.use(express.json());
 
 //routes
