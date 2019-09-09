@@ -3,11 +3,11 @@ import path from 'path';
 import fs from 'fs-extra';
 import Photo from '../models/Photo';
 
-
 async function getPhotos(req: Request, res: Response): Promise<Response> {
     const photos = await Photo.find();
     return res.json(photos);
 }
+
 async function getPhoto(req: Request, res: Response): Promise<Response> {
     console.log(req.params)
     const photo = await Photo.findById(req.params.id);
@@ -44,8 +44,6 @@ async function deletePhoto(req: Request, res: Response): Promise<Response> {
 async function updatePhoto(req: Request, res: Response): Promise<Response> {
     const { id } = req.params;
     const { title, description } = req.body;
-
-    console.log(id, title, description);
 
     const updatedPhoto = await Photo.findByIdAndUpdate(id, {
         title,
